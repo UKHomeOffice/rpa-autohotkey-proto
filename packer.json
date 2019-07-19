@@ -42,10 +42,14 @@
   "provisioners": [
     {
       "type": "powershell",
-      "scripts": [
-        "./scripts/install-choco.ps1",
-        "./scripts/install-autohotkey.ps1",
-        "./scripts/install-awscli.ps1"
+      "inline": [
+        "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
+      ]
+    },
+    {
+      "type": "powershell",
+      "inline": [
+        "choco install -y awscli autohotkey"
       ]
     },
     {
